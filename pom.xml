@@ -17,7 +17,7 @@
 		<resources>
 			<resource>
 				<directory>src/main/resources</directory>
-				<excludes><exclude>*.*</exclude></excludes>
+				<excludes><exclude>data/*.*</exclude></excludes>
 			</resource>
 		</resources>
         <plugins>
