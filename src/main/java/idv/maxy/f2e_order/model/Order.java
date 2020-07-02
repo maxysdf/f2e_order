@@ -2,10 +2,19 @@ package idv.maxy.f2e_order.model;
 
 import java.util.Date;
 
+/**
+ * 訂單Model
+ * @author Max Chen
+ *
+ */
 public class Order {
+	/** 商品名 */
 	private String name;
+	/** 圖片 */
 	private String logo;
+	/** 狀態 */
 	private Integer status;
+	/** 預計出貨日 */
 	private Date date;
 	
 	public String getName() {

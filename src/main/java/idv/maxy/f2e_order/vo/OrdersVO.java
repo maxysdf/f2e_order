@@ -3,6 +3,11 @@ package idv.maxy.f2e_order.vo;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 訂單清單VO
+ * @author Max Chen
+ *
+ */
 public class OrdersVO {
 	private List<OrderVO> orders = new ArrayList<>();
 

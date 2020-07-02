@@ -11,6 +11,11 @@ import org.yaml.snakeyaml.Yaml;
 import idv.maxy.f2e_order.dao.OrderDao;
 import idv.maxy.f2e_order.model.Order;
 
+/**
+ * 訂單DAO (YAML)
+ * @author Max Chen
+ *
+ */
 @Repository
 public class YamlOrderDaoImpl implements OrderDao {
 	

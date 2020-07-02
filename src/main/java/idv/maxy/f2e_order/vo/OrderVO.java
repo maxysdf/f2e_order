@@ -7,14 +7,24 @@ import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+/**
+ * 訂單VO
+ * @author Max Chen
+ *
+ */
 public class OrderVO {
+	/** 商品名 */
 	private String name;
+	/** 圖片 */
 	private String logo;
+	/** 狀態 */
 	private OrderStatusVO status;
 	
+	/** 出貨日期 */
 	@JsonIgnore
 	private Date origDate;
 	
+	/** 出貨日期(民國年月日) */
 	@JsonProperty
 	public String getDate() {
 		if(origDate == null) { return null; }
@@ -27,6 +37,7 @@ public class OrderVO {
 		return String.format("%s/%s", y-1911, md);
 	}
 	
+	/** 是否進行中 */
 	public boolean isProcessing() {
 		if(status == null || status.getCode() == null) { return false; }
 		return status.getCode() == 1 || status.getCode() == 2;

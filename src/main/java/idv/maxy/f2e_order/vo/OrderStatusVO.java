@@ -2,7 +2,13 @@ package idv.maxy.f2e_order.vo;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+/**
+ * 訂單狀態VO
+ * @author Max Chen
+ *
+ */
 public class OrderStatusVO {
+	/** 狀態代碼 */
 	private Integer code;
 
 	public Integer getCode() {
@@ -13,6 +19,7 @@ public class OrderStatusVO {
 		this.code = code;
 	}
 	
+	/** 狀態 */
 	@JsonProperty
 	public String getType() {
 		if(code == null) { return null; }
