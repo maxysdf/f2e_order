@@ -1,0 +1,88 @@
+html, * {
+	padding:0;
+	margin: 0;
+	font-family: Arial;
+	box-sizing: border-box;
+}
+
+li {
+	list-style: none;
+}
+
+li.head {
+	background: #eee;
+	font-weight: bold;
+	padding: 5px;
+	border-bottom: 2px solid #ddd;
+}
+
+li.head::before {
+	content: "\275a";
+	color: green;
+	margin-right: 10px;
+}
+
+li.detail {
+	background: white;
+	border-bottom: 2px solid #ddd;
+	position: relative;
+}
+
+li.detail:hover {
+	background: #efe;
+	cursor: pointer;
+}
+
+div.left  { 
+	float: left;
+	width: 20%; 
+}
+
+div.center {
+	color: gray;
+	text-align: center;
+	padding: 5px;
+}
+
+div.right { 
+	float: left;
+	width: 80%; 
+	padding-right: 15px;
+	position: relative;
+}
+
+div.arrow {
+	position: absolute;
+	right: 10px;
+	width: 15px;
+	top: 45%;
+}
+
+div.wrapper {
+	margin: 15px;
+}
+
+div.name {
+	margin-top: 15px;
+}
+
+span.status {
+	display:inline-block;
+	min-width: 100px;
+	font-weight: bold;
+}
+
+ul.processing span.status {
+	color: #3a6;
+}
+
+ul.non-processing span.status {
+	color: #333;
+}
+
+
+span.date {
+	font-weight: bold;
+}
+
+.clear { clear: both; }

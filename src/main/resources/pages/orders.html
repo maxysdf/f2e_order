@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>orders</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+		<link rel="stylesheet" type="text/css" th:href="@{/css/main.css}" />
+	</head>
+	<body>
+		<div id="main">
+			<ul class="processing">
+				<li class="head">進行中</li>
+				<li v-if="!procOrders.length" class="detail">
+					<div class="center">無資料</div>
+				</li>
+				<li v-if="procOrders.length" v-for="o in procOrders" class="detail">
+					<div class="left">
+						<div class="wrapper">
+							<img :src="o.logo" width="100%" />
+						</div>
+					</div>
+					<div class="right">
+						<div class="wrapper">
+							<div>
+								<span class="status">{{o.status.type}}</span>
+								<span class="date">預計出貨: {{o.date}}</span>
+							</div>
+							<div class="name">{{o.name}}</div>
+						</div>
+					</div>
+					<div class="arrow"><img width="15" :src="arrowImg" /></div>
+					<div class="clear"></div>
+				</li>
+			</ul>
+			<ul class="non-processing">
+				<li class="head">已完成</li>
+				<li v-if="!nprocOrders.length" class="detail">
+					<div class="center">無資料</div>
+				</li>
+				<li v-if="nprocOrders.length" v-for="o in nprocOrders" class="detail">
+					<div class="left">
+						<div class="wrapper">
+							<img :src="o.logo" width="100%" />
+						</div>
+					</div>
+					<div class="right">
+						<div class="wrapper">
+							<div>
+								<span class="status">{{o.status.type}}</span>
+							</div>
+							<div class="name">{{o.name}}</div>
+						</div>
+					</div>
+					<div class="arrow"><img width="15" :src="arrowImg" /></div>
+					<div class="clear"></div>
+				</li>
+			</ul>
+		</div>
+
+		<!-- scripts -->
+		<script type="text/javascript" th:src="@{/js/vue.min.js}"></script>
+		<script type="text/javascript" th:src="@{/js/axios.min.js}"></script>
+		
+		<script type="text/javascript">
+			var main = new Vue({
+				el: '#main',
+				data: {
+					base: '[[@{/}]]'.replace(/\/$/, ''),
+					procOrders: [],
+					nprocOrders: [],
+					
+					arrowImg: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAABkCAYAAAAlg3YKAAABX0lEQVR4nO3coUpE' +
+					          'URRG4QUy4ZYBYR5rHkqwWATBYLFYphisNovFYPBxTFpGGGH4z277wF0fTN+sMjP3nrNBkiRJkiSt2x44AJvuQW' +
+					          'a0B76BH+AZI/1zGufvY6Sjc3FOI130jTaHF87HMdLRBnglRzpgJCONGKlgYRzpCSMZacRIBUYqWIA3cqRHjFSK' +
+					          'tGpGKjBSgZEKFuCdHOmhbbpJbDHSUCXSfdt0kzBSgZEKKpHu2qabxBb4wEhRJdJt23STMFKBkQougU9ypJu26S' +
+					          'ZhpAIjFeww0lAl0nXbdJPYAV8YKapEuuoabhZGKjDSgIEC4wR+kwXGCfw1Hfh/LDBOYJygEme1TxV95BoYJ/Dd' +
+					          'WGCcwPfzgXEC4wSeMguME3iIM/AYcGCcwDiBN34C4wReqAuMExgnqMRZ7d15FwsExgkqcVa9Acb1OAOjBUtuoc' +
+					          'IVXSUueStwTaAkSZIkSWr2C/T5N1rZQF3dAAAAAElFTkSuQmCC',
+				},
+				mounted: function() {
+					var self = this;
+					axios.post(self.base + '/api/orders').then(function(res) {
+						var orders = res.data.orders;
+						for(var o in orders) {
+							var order = orders[o];
+							if( order.processing) self.procOrders.push(order);
+							if(!order.processing) self.nprocOrders.push(order);
+						}
+					});
+				}
+			});
+		
+		</script>
+		
+	</body>
+</html>
